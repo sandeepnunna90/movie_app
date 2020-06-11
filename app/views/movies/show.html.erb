@@ -33,9 +33,11 @@
         <%= @movie.average_score %>
       </div>
     <% end %>
-    <div class="title-heading-container">
-      <%= link_to "Review the Movie", new_movie_review_path(@movie), class: "btn btn-primary" %>
-    </div>
+    <% if @user_review.empty? %>
+      <div class="title-heading-container">
+        <%= link_to "Review the Movie", new_movie_review_path(@movie), class: "btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
 </div>
 <hr/>
