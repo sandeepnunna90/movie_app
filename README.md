@@ -17,3 +17,10 @@ score from users.
 - Please put some seed/fake data in place, so when we view it, we see reviews and movies.
 - Include user credentials for an admin user so we can review the administrative functionality.
 - Put your best foot forward; make sure the front-end looks as nice as possible.
+- Your search should support partial searches; “Man” in the search would bring up “Batman Begins” if that movie was in your database.
+- A user should be able to edit their existing review.
+- An average review score should be shown. Show the average of all the movie’s scores as the
+average score.
+
+
+Application URL: [Movies-App](https://movie-reviews-mvp.herokuapp.com)
