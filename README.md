@@ -23,4 +23,14 @@ score from users.
 average score.
 
 
-Application URL: [Movies-App](https://movie-reviews-mvp.herokuapp.com)
+*Application URL :* [Movies-App](https://movie-reviews-mvp.herokuapp.com)
+
+**Technologies & Gems**
+- The application is built using Ruby on Rails framework (scaffolding) 
+- Gems used when building this application
+  - [Devise](https://github.com/heartcombo/devise)
+  - [Postgresql](https://github.com/ged/ruby-pg)
+  - [Simpleform](https://github.com/heartcombo/simple_form) 
+  - [Paperclip](https://github.com/thoughtbot/paperclip)
+  - [Bootstrap](https://github.com/twbs/bootstrap-rubygem)
+  - [Pry](https://github.com/pry/pry)
