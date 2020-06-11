@@ -26,10 +26,12 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 ### Custom gem Area
+# User authentication
 gem 'devise'
+# Simple form
 gem 'simple_form'
+# Adds thumbnails or images
 gem 'paperclip', '~> 6.0.0'
-###
 
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -38,6 +40,12 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Pry for Debugging
+  gem 'pry-rails'
+  # Rspec Testing Framework
+  gem 'rspec-rails', '~> 4.0.0'
+  # Should matchers
+  gem 'shoulda-matchers'
 end
 
 group :development do

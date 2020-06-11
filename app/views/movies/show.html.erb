@@ -1,47 +1,75 @@
-<%= image_tag @movie.image.url(:medium) %>
+<div class="show-container">
+  <div class="show-image-item">
+    <%= image_tag @movie.image.url(:medium) %>
+  </div>
+  <div class="show-title-item">
+    <div class="title-heading-container">
+      <strong class="title-heading">Title:</strong>
+      <%= @movie.title %>
+    </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @movie.title %>
-</p>
+    <div class="title-heading-container">
+      <strong class="title-heading">Description:</strong>
+      <%= @movie.description %>
+    </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @movie.description %>
-</p>
+    <div class="title-heading-container">
+      <strong class="title-heading">Length:</strong>
+      <%= @movie.length %>
+    </div>
 
-<p>
-  <strong>Length:</strong>
-  <%= @movie.length %>
-</p>
+    <div class="title-heading-container">
+      <strong class="title-heading">Year:</strong>
+      <%= @movie.year %>
+    </div>
 
-<p>
-  <strong>Year:</strong>
-  <%= @movie.year %>
-</p>
-
-<p>
-  <strong>Rating:</strong>
-  <%= @movie.rating %>
-</p>
-
-<p>
-  <%= link_to "Review the Movie", new_movie_review_path(@movie) %>
-</p>
-
-<div class="col-md-7 col-md-offset-1">
+    <div class="title-heading-container">
+      <strong class="title-heading">Rating:</strong>
+      <%= @movie.rating %>
+    </div>
+    <% if @movie.reviews.present? %>
+      <div class="title-heading-container">
+        <strong class="title-heading">Averge Rating Score:</strong>
+        <%= @movie.average_score %>
+      </div>
+    <% end %>
+    <div class="title-heading-container">
+      <%= link_to "Review the Movie", new_movie_review_path(@movie), class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
+<hr/>
+<div class="review-container">
+  <div class="review-item review-link">
+   Reviews
+  </div>
+  <hr/>
   <% if @reviews.blank? %>
-    <h3>No reviews just yet, would you like to add the first!</h3>
-    <%= link_to "Write Review", new_movie_review_path(@movie), class: "btn btn-danger" %>
+    <div class="review-item">
+      <h3>No reviews just yet, click <i> "Review the Movie" </i> to be the first to review</h3>
+    </div>
   <% else %>
     <% @reviews.each do |review| %>
-      <div class="reviews">
-        <p><%= review.score %></p>
-        <p><%= review.comment %></p>
+      <div class="review-item reviews">
+        <section class="rating__card">
+          <blockquote class="rating__card__quote">“<%= review.comment %>”</blockquote>
+          <div class="rating__card__stars">
+            <span class="rating__card__stars__name"><%= review.user.username %></span>
+          </div>
+          <p class="rating__card__bottomText"><b>Rating: <%= review.score %> / 10 </b></p>
+          <% if review.user == current_user %>
+            <div class="edit-review-link">
+              <%= link_to 'Edit', edit_movie_review_path(@movie, review) %>
+            </div>
+          <% end %>
+        </section>
       </div>
     <% end %>
   <% end %>
+  <div class="review-item review-link">
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to 'Edit', edit_movie_path(@movie) %> |
+      <% end %>
+      <%= link_to 'Back', movies_path %>
+  </div>
 </div>
-
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back', movies_path %>

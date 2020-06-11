@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :set_movie, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :authorize, except: %i[index show]
 
   # GET /movies
   # GET /movies.json
@@ -10,7 +14,7 @@ class MoviesController < ApplicationController
   # GET /movies/1
   # GET /movies/1.json
   def show
-    @reviews = Review.where(movie_id: @movie.id).order("created_at DESC")
+    @reviews = Review.where(movie_id: @movie.id).order('created_at DESC')
   end
 
   # GET /movies/new
@@ -19,8 +23,7 @@ class MoviesController < ApplicationController
   end
 
   # GET /movies/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /movies
   # POST /movies.json
@@ -62,14 +65,23 @@ class MoviesController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_movie
-      @movie = Movie.find(params[:id])
-    end
+  def search
+    @movies = Movie.search(search_params[:query])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def movie_params
-      params.require(:movie).permit(:title, :description, :length, :year, :rating, :image)
-    end
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_movie
+    @movie = Movie.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def movie_params
+    params.require(:movie).permit(:title, :description, :length, :year, :rating, :image)
+  end
+
+  def search_params
+    params.permit(:query)
+  end
 end
