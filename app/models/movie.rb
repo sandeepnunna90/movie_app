@@ -11,8 +11,8 @@ class Movie < ApplicationRecord
   has_attached_file :image, styles: { medium: '400x600#', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
   validates_attachment_content_type :image, content_type: %r{\Aimage/.*\Z}
 
-  def self.search(search_params)
-    where('lower(title) like ?', "%#{search_params}%")
+  def self.search(query)
+    where('lower(title) like ?', "%#{query.downcase}%")
   end
 
   def average_score
