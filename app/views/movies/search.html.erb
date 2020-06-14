@@ -2,7 +2,7 @@
   <% @movies.each do |movie| %>
     <li class="flex-item">
         <div class="thumbnail m-5">
-            <%= link_to (image_tag movie.image.url(:medium), class: 'image'), movie %>
+            <%= link_to (image_tag movie.image.variant(resize: "500x500"), class: 'image'), movie %>
         </div>
         <div>
           <%= movie.title %>
