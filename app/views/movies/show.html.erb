@@ -1,6 +1,6 @@
 <div class="show-container">
   <div class="show-image-item">
-    <%= image_tag @movie.image.url(:medium) %>
+    <%= image_tag @movie.image.variant(resize: "500x500"), class: "image" %>
   </div>
   <div class="show-title-item">
     <div class="title-heading-container">

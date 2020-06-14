@@ -22,8 +22,11 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# S3 bucket
+gem 'aws-sdk-s3', require: false
+
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 ### Custom gem Area
 # User authentication
@@ -31,7 +34,7 @@ gem 'devise'
 # Simple form
 gem 'simple_form'
 # Adds thumbnails or images
-gem 'paperclip', '~> 6.0.0'
+# gem 'paperclip', '~> 6.0.0'
 
 
 # Reduces boot times through caching; required in config/boot.rb

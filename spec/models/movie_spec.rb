@@ -8,8 +8,7 @@ RSpec.describe Movie, type: :model do
                         description: 'Adapted from Marvel Comics',
                         year: 2012,
                         length: '2h 24m',
-                        rating: 'PG-13',
-                        image: File.new(Rails.root + 'spec/fixtures/images/rails.jpg'))
+                        rating: 'PG-13')
   end
 
   describe 'Validations' do
@@ -18,10 +17,6 @@ RSpec.describe Movie, type: :model do
     it { should validate_presence_of(:year) }
     it { should validate_presence_of(:length) }
     it { should validate_presence_of(:rating) }
-
-    it 'is valid with valid attributes' do
-      expect(subject).to be_valid
-    end
 
     it 'is not valid without a title' do
       subject.title = nil
